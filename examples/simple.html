@@ -80,7 +80,7 @@
   // Then we add a callback to be called every time a message is published on this topic.
   listener.subscribe(function(message) {
     console.log('Received message on ' + listener.name + ': ' + message.data);
-
+    document.getElementById("logId1").innerHTML=message.data;
     // If desired, we can unsubscribe from the topic as well.
     listener.unsubscribe();
   });
@@ -106,6 +106,8 @@
   // is a ROSLIB.ServiceResponse object.
   addTwoIntsClient.callService(request, function(result) {
     console.log('Result for service call on ' + addTwoIntsClient.name + ': ' + result.sum);
+    document.getElementById("logId").value=result.sum;
+
   });
 
   // Setting a param value
@@ -125,7 +127,10 @@
   maxVelX.set(0.8);
   maxVelX.get(function(value) {
     console.log('MAX VAL: ' + value);
+
   });
+
+
 
   // Getting a param value
   // ---------------------
@@ -167,5 +172,7 @@
       Connection closed.
     </p>
   </div>
+  <input type="text" id="logId" />
+  <div id="logId1"></div>
 </body>
 </html>
